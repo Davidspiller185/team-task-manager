@@ -119,3 +119,34 @@ fs.readFile("data/step1.txt", "utf8", (err, data) => {
     })
 
 13.
+fs.writeFile("data/report-title.txt","Daily report",(err) =>{
+    if (err) return console.log(err)
+    fs.writeFile("data/report-body.txt", "Everything is working",(err) =>{
+        if(err) return console.log(err)
+        fs.readFile("data/report-title.txt","utf-8",(err,data) =>{
+        if (err) return console.log(err)
+        const oneData = data
+            fs.readFile("data/report-body.txt","utf-8",(err,data) =>{
+                if (err) return console.log(err)
+                const dataTwo = data
+                const addData = oneData + "\n" + dataTwo
+                  fs.writeFile("data/final-report.txt",addData,(err) =>{
+                    if(err) return console.log(err)
+                    console.log(addData)
+                  })
+            })})})
+})
+
+14.
+fs.writeFile("data/original.txt","Original file content",(err) =>{
+    if (err) return console.log(err)
+    fs.readFile("data/original.txt","utf-8",(err,data) =>{
+        if(err) return console.log(err)
+        const saveData = data
+        fs.writeFile("data/copy.txt", saveData,(err) =>{
+            if(err) return console.log(err)
+            fs.readFile("data/copy.txt","utf-8",(err,data) =>{
+                if(err) return console.log(err)
+                console.log(data)})
+        })})
+})
